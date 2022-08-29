@@ -1079,9 +1079,10 @@ class AxionPhoton():
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def NGC1275(ax,text_label=switch_label(r'{\bf Chandra}'),text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
+    #def NGC1275(ax,text_label=switch_label(r'{\bf Chandra}'),text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
+    def NGC1275(ax,text_label=switch_label(r'{\bf Chandra}'),text_pos=[1e-11,1.5e-12],col='orange',text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=0,lw=2):
         dat = loadtxt("limit_data/AxionPhoton/Chandra_NGC1275.txt")
-        FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
+        FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw,facealpha=.1)
         return
 
     def H1821643(ax,text_label=switch_label(r'{\bf Chandra}'), text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
