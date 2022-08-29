@@ -124,7 +124,7 @@ def FigSetup(xlab=r'$m_a$ [eV]',ylab='',\
              FrequencyAxis=False,N_Hz=1,upper_xlabel=r"$\nu_a$ [Hz]",**freq_kwargs):
 
     plt.rcParams['axes.linewidth'] = lw
-    plt.rc('text', usetex=True)
+    #plt.rc('text', usetex=True)
     plt.rc('font', family='serif',size=tfs)
 
     if mathpazo:
@@ -1312,8 +1312,8 @@ class AxionPhoton():
     def Haloscopes(ax,projection=False,fs=20,text_on=True,BASE_arrow_on=True):
         AxionPhoton.ADMX(ax,projection=projection,fs=fs,text_on=text_on)
         AxionPhoton.HAYSTAC(ax,projection=projection,text_on=text_on)
-        AxionPhoton.ABRACADABRA(ax,fs=fs,projection=False,text_on=text_on)
-        AxionPhoton.SHAFT(ax,text_on=text_on)
+        #AxionPhoton.ABRACADABRA(ax,fs=fs,projection=False,text_on=text_on)
+        #AxionPhoton.SHAFT(ax,text_on=text_on)
         AxionPhoton.ORGAN(ax,projection=projection,text_on=text_on,lw=0)
         AxionPhoton.UPLOAD(ax,text_on=text_on)
         AxionPhoton.TASEH(ax,text_on=False)
@@ -1347,7 +1347,7 @@ class AxionPhoton():
             AxionPhoton.RBF_UF(ax,fs=fs-2,text_on=text_on)
             AxionPhoton.CAPP(ax,fs=fs-4,text_on=text_on)
             AxionPhoton.QUAX(ax,text_on=text_on)
-            AxionPhoton.BASE(ax,text_on=text_on,arrow_on=BASE_arrow_on)
+            #AxionPhoton.BASE(ax,text_on=text_on,arrow_on=BASE_arrow_on)
             AxionPhoton.ADMX_SLIC(ax,fs=fs-8,text_on=text_on)
             #AxionPhoton.RADES(ax,text_on=False)
             #AxionPhoton.GrAHal(ax,text_on=False)
@@ -1377,6 +1377,7 @@ class AxionPhoton():
         return
 
     def LowMassAstroBounds(ax,projection=False,text_on=True,edgealpha=1,lw=1,GalacticSN=False):
+        """
         AxionPhoton.FermiSNe(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
         AxionPhoton.DSNALP(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
         AxionPhoton.Hydra(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
@@ -1384,9 +1385,10 @@ class AxionPhoton():
         AxionPhoton.Mrk421(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
         AxionPhoton.Fermi(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
         AxionPhoton.StarClusters(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
+        """
         if projection:
-            AxionPhoton.NGC1275(ax,text_on=False,edgealpha=edgealpha,lw=lw)
-            AxionPhoton.SN1987A_gamma(ax,text_on=False,edgealpha=edgealpha,lw=lw)
+            #AxionPhoton.NGC1275(ax,text_on=False,edgealpha=edgealpha,lw=lw)
+            xionPhoton.SN1987A_gamma(ax,text_on=False,edgealpha=edgealpha,lw=lw)
             if GalacticSN:
                 AxionPhoton.Fermi_GalacticSN(ax,text_on=text_on,lw=lw)
             AxionPhoton.MWDXrays(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
@@ -1394,14 +1396,14 @@ class AxionPhoton():
             AxionPhoton.HESS(ax,text_on=False,edgealpha=edgealpha,lw=lw)
             AxionPhoton.HAWC(ax,text_on=False,edgealpha=edgealpha,lw=lw)
         else:
+            
             AxionPhoton.NGC1275(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
             AxionPhoton.SN1987A_gamma(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
             AxionPhoton.HESS(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
             AxionPhoton.HAWC(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
             AxionPhoton.MWDXrays(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
             AxionPhoton.MWDPolarisation(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
-
-
+        
         return
 
     def StellarBounds(ax,text_on=True):
