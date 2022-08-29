@@ -24,6 +24,13 @@ import matplotlib.patheffects as pe
 pltdir = 'plots/'
 pltdir_png = pltdir+'plots_png/'
 
+txt_off = True
+def switch_label(label, txt_off=txt_off):
+    if txt_off:
+        return ''
+    else:
+        return label
+
 #==============================================================================#
 def col_alpha(col,alpha=0.1):
     rgb = colors.colorConverter.to_rgb(col)
@@ -300,16 +307,16 @@ class AxionPhoton():
             plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor=None,facecolor=col,zorder=0,alpha=0.1)
             if text_on:
                 if rs1==0:
-                    plt.text(1e-5*text_shift[0],2.3e-16*text_shift[1],r'{\bf ADMX}',fontsize=20,color=col,rotation=0,ha='left',va='top',clip_on=True)
+                    plt.text(1e-5*text_shift[0],2.3e-16*text_shift[1],switch_label(r'{\bf ADMX}'),fontsize=20,color=col,rotation=0,ha='left',va='top',clip_on=True)
                     plt.plot([3e-5,2e-5],[3e-16,0.6e-15],'k-',lw=1.5)
                 else:
-                    plt.text(0.9e-6*text_shift[0],0.15*text_shift[1],r'{\bf ADMX}',fontsize=fs,color=col,rotation=0,ha='left',va='top',clip_on=True)
+                    plt.text(0.9e-6*text_shift[0],0.15*text_shift[1],switch_label(r'{\bf ADMX}'),fontsize=fs,color=col,rotation=0,ha='left',va='top',clip_on=True)
         else:
             if text_on:
                 if rs1==0:
-                    plt.text(0.85e-6*text_shift[0],1e-13*text_shift[1],r'{\bf ADMX}',fontsize=fs,color=col,rotation=90,ha='left',va='top',clip_on=True)
+                    plt.text(0.85e-6*text_shift[0],1e-13*text_shift[1],switch_label(r'{\bf ADMX}'),fontsize=fs,color=col,rotation=90,ha='left',va='top',clip_on=True)
                 else:
-                    plt.gcf().text(0.39*text_shift[0],0.5*text_shift[1],r'{\bf ADMX}',rotation=90,color=col)
+                    plt.gcf().text(0.39*text_shift[0],0.5*text_shift[1],switch_label(r'{\bf ADMX}'),rotation=90,color=col)
         return
 
     def RBF_UF(ax,col ='darkred',fs=13,RescaleByMass=False,text_on=True,text_shift=[1,1],zorder=0.1):
@@ -327,10 +334,10 @@ class AxionPhoton():
 
         if text_on:
             if rs1==0:
-                plt.text(text_shift[0]*0.37e-5,text_shift[1]*0.8e-11,r'{\bf RBF+UF}',fontsize=fs,color='w',rotation=-90,ha='left',va='top',clip_on=True)
+                plt.text(text_shift[0]*0.37e-5,text_shift[1]*0.8e-11,switch_label(r'{\bf RBF+UF}'),fontsize=fs,color='w',rotation=-90,ha='left',va='top',clip_on=True)
             else:
-                plt.text(text_shift[0]*0.7e-5,text_shift[1]*4e3,r'{\bf RBF}',fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
-                plt.text(text_shift[0]*0.7e-5,text_shift[1]*1e3,r'{\bf UF}',fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
+                plt.text(text_shift[0]*0.7e-5,text_shift[1]*4e3,switch_label(r'{\bf RBF}'),fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
+                plt.text(text_shift[0]*0.7e-5,text_shift[1]*1e3,switch_label(r'{\bf UF}'),fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
 
         return
 
@@ -354,7 +361,7 @@ class AxionPhoton():
 
             if text_on:
                 if projection==False:
-                    plt.text(text_shift[0]*2.1e-5,text_shift[0]*5e-13,r'{\bf HAYSTAC}',fontsize=fs,color=col,rotation=-90,ha='left',va='top',clip_on=True)
+                    plt.text(text_shift[0]*2.1e-5,text_shift[0]*5e-13,switch_label(r'{\bf HAYSTAC}'),fontsize=fs,color=col,rotation=-90,ha='left',va='top',clip_on=True)
         else:
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color='k',zorder=zo,lw=4)
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color=col,zorder=zo,lw=3)
@@ -362,7 +369,7 @@ class AxionPhoton():
 
             plt.plot([dat2[0,0],dat2[0,0]],[dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),y2/(rs1*2e-10*dat2[0,0]+rs2)],color='k',zorder=zo,lw=4)
             plt.plot([dat2[0,0],dat2[0,0]],[dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),y2/(rs1*2e-10*dat2[0,0]+rs2)],color=col,zorder=zo,lw=3)
-            plt.text(text_shift[0]*dat2[0,0]*1.1,text_shift[1]*y2*1.2,r'{\bf HAYSTAC}',fontsize=fs,color=col,rotation=40,ha='left',rotation_mode='anchor')
+            plt.text(text_shift[0]*dat2[0,0]*1.1,text_shift[1]*y2*1.2,switch_label(r'{\bf HAYSTAC}'),fontsize=fs,color=col,rotation=40,ha='left',rotation_mode='anchor')
             plt.plot(dat2[0,0],dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zo)
         return
 
@@ -404,12 +411,12 @@ class AxionPhoton():
             plt.fill_between(dat4[:,0],dat4[:,1]/(rs1*2e-10*dat4[0,0]+rs2),y2=y2,color=col,zorder=zo)
 
             if text_on:
-                plt.text(text_shift[0]*0.8e-5,text_shift[1]*0.1e-13,r'{\bf CAPP}',fontsize=fs,color=col,rotation=90,ha='center',va='top',clip_on=True)
+                plt.text(text_shift[0]*0.8e-5,text_shift[1]*0.1e-13,switch_label(r'{\bf CAPP}'),fontsize=fs,color=col,rotation=90,ha='center',va='top',clip_on=True)
         else:
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color='k',zorder=zo,lw=4)
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color=col,zorder=zo,lw=3)
             if text_on:
-                plt.text(text_shift[0]*dat[0,0]*1.1,text_shift[1]*y2*1.8,r'{\bf CAPP}',fontsize=fs,color=col,rotation=40,ha='left',va='top',rotation_mode='anchor')
+                plt.text(text_shift[0]*dat[0,0]*1.1,text_shift[1]*y2*1.8,switch_label(r'{\bf CAPP}'),fontsize=fs,color=col,rotation=40,ha='left',va='top',rotation_mode='anchor')
             plt.plot(dat[0,0],dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zo)
             imin = argmin(dat2[:,1])
             plt.plot(dat2[imin,0],dat2[imin,1]/(rs1*2e-10*dat2[0,0]+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zo)
@@ -441,14 +448,14 @@ class AxionPhoton():
             plt.plot([dat2[0,0],dat2[0,0]],[dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),y2/(rs1*2e-10*dat2[0,0]+rs2)],color=col,lw=2,zorder=zo)
 
             if text_on:
-                plt.text(text_shift[0]*6.3e-5,text_shift[1]*0.05e-11,r'{\bf QUAX}',fontsize=fs,color=col,rotation=-90,ha='center',va='top',clip_on=True)
+                plt.text(text_shift[0]*6.3e-5,text_shift[1]*0.05e-11,switch_label(r'{\bf QUAX}'),fontsize=fs,color=col,rotation=-90,ha='center',va='top',clip_on=True)
         else:
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color='k',lw=4,zorder=zo)
             plt.plot([dat[0,0],dat[0,0]],[dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),y2/(rs1*2e-10*dat[0,0]+rs2)],color=col,lw=3,zorder=zo)
             plt.plot([dat2[0,0],dat2[0,0]],[dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),y2/(rs1*2e-10*dat2[0,0]+rs2)],color='k',lw=4,zorder=zo)
             plt.plot([dat2[0,0],dat2[0,0]],[dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),y2/(rs1*2e-10*dat2[0,0]+rs2)],color=col,lw=3,zorder=zo)
             if text_on:
-                plt.text(text_shift[0]*dat2[0,0]*1.2,text_shift[1]*y2*1.2,r'{\bf QUAX}',fontsize=fs,color=col,rotation=40,ha='left',rotation_mode='anchor')
+                plt.text(text_shift[0]*dat2[0,0]*1.2,text_shift[1]*y2*1.2,switch_label(r'{\bf QUAX}'),fontsize=fs,color=col,rotation=40,ha='left',rotation_mode='anchor')
             plt.plot(dat[0,0],dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zo)
             plt.plot(dat2[0,0],dat2[0,1]/(rs1*2e-10*dat2[0,0]+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zo)
 
@@ -583,10 +590,10 @@ class AxionPhoton():
             plt.fill_between(dat[:,0],dat[:,1]/(rs1*2e-10*dat[:,0]+rs2),y2=y2,edgecolor=None,facecolor=col,zorder=0,alpha=0.2)
             if text_on:
                 if rs1==0:
-                    plt.text(text_shift[0]*5e-4,text_shift[1]*1.15e-14,r'{\bf ORGAN}',fontsize=18,color=col,rotation=0,ha='left',va='top',clip_on=True)
+                    plt.text(text_shift[0]*5e-4,text_shift[1]*1.15e-14,switch_label(r'{\bf ORGAN}'),fontsize=18,color=col,rotation=0,ha='left',va='top',clip_on=True)
                     plt.plot([5e-4,1.5e-4],[1.3e-14,6e-13],'k-',lw=1.5)
                 else:
-                    plt.text(text_shift[0]*1.2e-4,text_shift[1]*1e3,r'{\bf ORGAN}',fontsize=18,color='darkred',rotation=-90,ha='left',va='top',clip_on=True)
+                    plt.text(text_shift[0]*1.2e-4,text_shift[1]*1e3,switch_label(r'{\bf ORGAN}'),fontsize=18,color='darkred',rotation=-90,ha='left',va='top',clip_on=True)
 
         else:
             if RescaleByMass:
@@ -596,10 +603,10 @@ class AxionPhoton():
                 plt.plot(dat[0,0],dat[0,1]/(rs1*2e-10*dat[0,0]+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zo)
             if text_on:
                 if rs1==0:
-                    plt.text(text_shift[0]*110e-6,text_shift[1]*1e-11,r'{\bf ORGAN}',fontsize=fs,color=col,rotation=-90,ha='left',va='top',clip_on=True)
+                    plt.text(text_shift[0]*110e-6,text_shift[1]*1e-11,switch_label(r'{\bf ORGAN}'),fontsize=fs,color=col,rotation=-90,ha='left',va='top',clip_on=True)
                 else:
-                    plt.text(text_shift[0]*dat[0,0]*1.1,text_shift[1]*y2*1.2,r'{\bf ORGAN}',fontsize=fs-3,color=col,rotation=40,ha='left',rotation_mode='anchor')
-                    plt.text(text_shift[0]*6e-5,text_shift[1]*1e2,r'{\bf ORGAN}',fontsize=fs-6,color=col,rotation=90,ha='left',rotation_mode='anchor')
+                    plt.text(text_shift[0]*dat[0,0]*1.1,text_shift[1]*y2*1.2,switch_label(r'{\bf ORGAN}'),fontsize=fs-3,color=col,rotation=40,ha='left',rotation_mode='anchor')
+                    plt.text(text_shift[0]*6e-5,text_shift[1]*1e2,switch_label(r'{\bf ORGAN}'),fontsize=fs-6,color=col,rotation=90,ha='left',rotation_mode='anchor')
         return
 
     def RADES(ax,col='blueviolet',fs=15,RescaleByMass=False,text_on=True,text_shift=[1,1]):
@@ -926,12 +933,12 @@ class AxionPhoton():
         if rs1==0:
             plt.plot([x,x],[y/(rs1*2e-10*x+rs2),y2/(rs1*2e-10*x+rs2)],color=col,lw=2,zorder=zorder)
             if text_on:
-                plt.text(text_shift[0]*2.4e-7,text_shift[1]*0.4e-11,r'{\bf ADMX SLIC}',fontsize=fs,color=col,rotation=-90,ha='center',va='top',clip_on=True)
+                plt.text(text_shift[0]*2.4e-7,text_shift[1]*0.4e-11,switch_label(r'{\bf ADMX SLIC}'),fontsize=fs,color=col,rotation=-90,ha='center',va='top',clip_on=True)
         else:
             plt.plot([x,x],[y/(rs1*2e-10*x+rs2),y2/(rs1*2e-10*x+rs2)],color='k',lw=4,zorder=zorder)
             plt.plot([x,x],[y/(rs1*2e-10*x+rs2),y2/(rs1*2e-10*x+rs2)],color=col,lw=3,zorder=zorder)
             if text_on:
-                plt.text(text_shift[0]*x,text_shift[1]*y2*1.2,r'{\bf ADMX SLIC}',fontsize=fs,color=col,rotation=40,ha='left',rotation_mode='anchor')
+                plt.text(text_shift[0]*x,text_shift[1]*y2*1.2,switch_label(r'{\bf ADMX SLIC}'),fontsize=fs,color=col,rotation=40,ha='left',rotation_mode='anchor')
             plt.plot(x,y/(rs1*2e-10*x+rs2),'.',markersize=15,color=col,markeredgecolor='k',zorder=zorder)
 
         return
@@ -1030,59 +1037,59 @@ class AxionPhoton():
                     plt.text(0.7e-2,0.12e1,r'{\bf IAXO}',fontsize=fs,color=IAXO_col,rotation=-18,clip_on=True)
         return
 
-    def FermiSNe(ax,text_label=r'{\bf Fermi-SNe}',text_pos=[1.2e-12,0.45e-10],col='ForestGreen',text_col='w',fs=12,zorder=0.265,text_on=True,edgealpha=1,lw=2):
+    def FermiSNe(ax,text_label=switch_label(r'{\bf Fermi-SNe}'),text_pos=[1.2e-12,0.45e-10],col='ForestGreen',text_col='w',fs=12,zorder=0.265,text_on=True,edgealpha=1,lw=2):
         # Fermi extragalactic SN gamma rays arXiv:[2006.06722]
         dat = loadtxt("limit_data/AxionPhoton/SNe-gamma.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def DSNALP(ax,text_label=r'{\bf DSNALP}',text_pos=[1.2e-12,1.2e-10],col=[0.0, 0.62, 0.3],text_col='w',fs=12,zorder=0.27,text_on=True,edgealpha=1,lw=2):
+    def DSNALP(ax,text_label=switch_label(r'{\bf DSNALP}'),text_pos=[1.2e-12,1.2e-10],col=[0.0, 0.62, 0.3],text_col='w',fs=12,zorder=0.27,text_on=True,edgealpha=1,lw=2):
         # Diffuse SN ALP background arXiv:[2008.11741]
         dat = loadtxt("limit_data/AxionPhoton/DSNALP.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def SN1987A_gamma(ax,text_label=r'{\bf SN1987A}',text_pos=[6e-11,0.4e-11],col='#067034',text_col='#067034',fs=15,zorder=0.21,text_on=True,edgealpha=1,lw=2):
+    def SN1987A_gamma(ax,text_label=switch_label(r'{\bf SN1987A}'),text_pos=[6e-11,0.4e-11],col='#067034',text_col='#067034',fs=15,zorder=0.21,text_on=True,edgealpha=1,lw=2):
         # SN1987 gamma rays arXiv:[1410.3747]
         dat = loadtxt("limit_data/AxionPhoton/SN1987A_gamma.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def Hydra(ax,text_label=r'{\bf Hydra}',text_pos=[1.2e-12,2e-11],col=[0.24, 0.71, 0.54],text_col='w',fs=13,zorder=0.23,text_on=True,edgealpha=1,lw=2):
+    def Hydra(ax,text_label=switch_label(r'{\bf Hydra}'),text_pos=[1.2e-12,2e-11],col=[0.24, 0.71, 0.54],text_col='w',fs=13,zorder=0.23,text_on=True,edgealpha=1,lw=2):
         # HYDRA-A arXiv:[1304.0989]
         dat = loadtxt("limit_data/AxionPhoton/Chandra_HYDRA_A.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def M87(ax,text_label=r'\quad {\bf M87}',text_pos=[1.4e-12,4e-12],col='seagreen',text_col='w',fs=15,zorder=0.219,text_on=True,edgealpha=1,lw=2):
+    def M87(ax,text_label=switch_label(r'\quad {\bf M87}'),text_pos=[1.4e-12,4e-12],col='seagreen',text_col='w',fs=15,zorder=0.219,text_on=True,edgealpha=1,lw=2):
         # M87 Limits from arXiv:[1703.07354]
         dat = loadtxt("limit_data/AxionPhoton/Chandra_M87.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def HESS(ax,text_label=r'{\bf HESS}',text_pos=[1.4e-8,1.6e-11],col='#2a5736',text_col='#2a5736',fs=14,zorder=0.255,text_on=True,edgealpha=1,lw=2):
+    def HESS(ax,text_label=switch_label(r'{\bf HESS}'),text_pos=[1.4e-8,1.6e-11],col='#2a5736',text_col='#2a5736',fs=14,zorder=0.255,text_on=True,edgealpha=1,lw=2):
         # HESS arXiv:[1304.0700]
         dat = loadtxt("limit_data/AxionPhoton/HESS.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def Mrk421(ax,text_label=r'{\bf Mrk 421}',text_pos=[3e-9,6e-11],col=[0.4, 0.6, 0.1],text_col='w',fs=12,zorder=0.26,text_on=True,edgealpha=1,lw=2):
+    def Mrk421(ax,text_label=switch_label(r'{\bf Mrk 421}'),text_pos=[3e-9,6e-11],col=[0.4, 0.6, 0.1],text_col='w',fs=12,zorder=0.26,text_on=True,edgealpha=1,lw=2):
         # Mrk 421 arXiv:[2008.09464]
         dat = loadtxt("limit_data/AxionPhoton/Mrk421.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def NGC1275(ax,text_label=r'{\bf Chandra}',text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
+    def NGC1275(ax,text_label=switch_label(r'{\bf Chandra}'),text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
         dat = loadtxt("limit_data/AxionPhoton/Chandra_NGC1275.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def H1821643(ax,text_label=r'{\bf Chandra}',text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
+    def H1821643(ax,text_label=switch_label(r'{\bf Chandra}'), text_pos=[1e-11,1.5e-12],col= [0.0, 0.3, 0.24],text_col=[0.0, 0.3, 0.24],fs=15,zorder=0.1,text_on=True,edgealpha=1,lw=2):
         dat = loadtxt("limit_data/AxionPhoton/Chandra_H1821643.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
-    def Fermi(ax,text_label=r'{\bf Fermi}',text_pos=[4.02e-10,1.2e-11],col=[0.0, 0.42, 0.24],text_col='w',fs=15,zorder=0.24,text_on=True,edgealpha=1,lw=2):
+    def Fermi(ax,text_label=switch_label(r'{\bf Fermi}'),text_pos=[4.02e-10,1.2e-11],col=[0.0, 0.42, 0.24],text_col='w',fs=15,zorder=0.24,text_on=True,edgealpha=1,lw=2):
         # Fermi NGC1275 arXiv:[1603.06978]
         Fermi1 = loadtxt("limit_data/AxionPhoton/Fermi1.txt")
         Fermi2 = loadtxt("limit_data/AxionPhoton/Fermi2.txt")
@@ -1103,20 +1110,20 @@ class AxionPhoton():
 
         if text_on:
             if projection==False:
-                plt.text(text_shift[0]*2.3e-8,text_shift[1]*0.28e-11,r'{\bf MWD}',fontsize=fs,color=text_col,rotation=0,ha='center',clip_on=True)
-                plt.text(text_shift[0]*2.3e-8,text_shift[1]*0.13e-11,r'{\bf Polarisation}',fontsize=fs,color=text_col,rotation=0,ha='center',clip_on=True)
+                plt.text(text_shift[0]*2.3e-8,text_shift[1]*0.28e-11,switch_label(r'{\bf MWD}'),fontsize=fs,color=text_col,rotation=0,ha='center',clip_on=True)
+                plt.text(text_shift[0]*2.3e-8,text_shift[1]*0.13e-11,switch_label(r'{\bf Polarisation}'),fontsize=fs,color=text_col,rotation=0,ha='center',clip_on=True)
             else:
-                plt.text(text_shift[0]*5e-8,text_shift[1]*0.7e-11,r'{\bf MWD Pol.}',fontsize=13,color='w',rotation=0,ha='center',clip_on=True)
+                plt.text(text_shift[0]*5e-8,text_shift[1]*0.7e-11,switch_label(r'{\bf MWD Pol.}'),fontsize=13,color='w',rotation=0,ha='center',clip_on=True)
         return
 
-    def HAWC(ax,text_label=r'{\bf HAWC}',text_pos=[0.9e-7,2.5e-11],col='#2b5e4e',text_col='#2b5e4e',fs=14,zorder=0.25,text_on=True,Projection=False,edgealpha=1,lw=2):
+    def HAWC(ax,text_label=switch_label(r'{\bf HAWC}'),text_pos=[0.9e-7,2.5e-11],col='#2b5e4e',text_col='#2b5e4e',fs=14,zorder=0.25,text_on=True,Projection=False,edgealpha=1,lw=2):
         # HAWC TeV Blazars arXiv:[2203.04332]
         dat = loadtxt("limit_data/AxionPhoton/HAWC.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,text_col=text_col,col=col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
         return
 
 
-    def MWDXrays(ax,text_label=r'{\bf MWD X-rays}',text_pos=[1.5e-7,1.3e-10],col='#59c275',text_col='#59c275',fs=14,zorder=0.1,text_on=True,Projection=False,edgealpha=1,lw=2):
+    def MWDXrays(ax,text_label=switch_label(r'{\bf MWD X-rays}'),text_pos=[1.5e-7,1.3e-10],col='#59c275',text_col='#59c275',fs=14,zorder=0.1,text_on=True,Projection=False,edgealpha=1,lw=2):
         # Magnetic white dwarf chandra x-rays arXiv:[2104.12772]
         dat = loadtxt("limit_data/AxionPhoton/MWDXrays.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,text_col=text_col,col=col,fs=fs,zorder=zorder,text_on=text_on,edgealpha=edgealpha,lw=lw)
@@ -1128,8 +1135,8 @@ class AxionPhoton():
         dat = loadtxt("limit_data/AxionPhoton/Xray-SuperStarClusters.txt")
         FilledLimit(ax,dat,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=False,edgealpha=edgealpha,lw=lw)
         if text_on:
-            plt.text(text_pos[0],text_pos[1],r'{\bf Star}',fontsize=fs,color=text_col,ha='left',va='top',rotation=rotation,clip_on=True)
-            plt.text(0.88*text_pos[0],text_pos[1],r'{\bf clusters}',fontsize=fs,color=text_col,ha='left',va='top',rotation=rotation,clip_on=True)
+            plt.text(text_pos[0],text_pos[1],switch_label(r'{\bf Star}'),fontsize=fs,color=text_col,ha='left',va='top',rotation=rotation,clip_on=True)
+            plt.text(0.88*text_pos[0],text_pos[1],switch_label(r'{\bf clusters}'),fontsize=fs,color=text_col,ha='left',va='top',rotation=rotation,clip_on=True)
         return
 
     def Fermi_GalacticSN(ax,text_label=r'{\bf Fermi SN}',text_pos=[1e-9,5e-13],col=[0.0, 0.42, 0.24],text_col=[0.0, 0.42, 0.24],fs=15,zorder=0.0,text_on=True,rotation=43,lw=1.5,facealpha=0.05,edgealpha=0.6):
@@ -1138,24 +1145,24 @@ class AxionPhoton():
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,rotation=rotation,facealpha=facealpha,edgealpha=edgealpha)
         return
 
-    def MUSE(ax,text_label=r'{\bf MUSE}',text_pos=[1.5,0.7e-12],col=[0.09, 0.45, 0.27],text_col=[0.09, 0.45, 0.27],fs=15,zorder=0.01,text_on=True,lw=0):
+    def MUSE(ax,text_label=switch_label(r'{\bf MUSE}'),text_pos=[1.5,0.7e-12],col=[0.09, 0.45, 0.27],text_col=[0.09, 0.45, 0.27],fs=15,zorder=0.01,text_on=True,lw=0):
         # Telescopes (MUSE) [2009.01310]
         dat = loadtxt("limit_data/AxionPhoton/Telescopes_MUSE.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,edgecolor=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,rotation=90,lw=lw,edgealpha=0)
         return
 
-    def VIMOS(ax,text_label=r'{\bf VIMOS}',text_pos=[12,0.4e-11],col=[0.09, 0.6, 0.27],text_col=[0.09, 0.6, 0.27],fs=15,zorder=0.01,text_on=True,lw=0):
+    def VIMOS(ax,text_label=switch_label(r'{\bf VIMOS}'),text_pos=[12,0.4e-11],col=[0.09, 0.6, 0.27],text_col=[0.09, 0.6, 0.27],fs=15,zorder=0.01,text_on=True,lw=0):
         # Telescopes (VIMOS) [astro-ph/0611502]
         dat = loadtxt("limit_data/AxionPhoton/Telescopes_VIMOS.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,edgecolor=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,rotation=-90,lw=lw,edgealpha=0)
         return
 
-    def SolarBasin(ax,text_label=r'{\bf Solar basin}',rotation=98,text_pos=[0.45e4,0.18e-11],col=[0.03, 0.42, 0.29],text_col='w',fs=13,zorder=0.01,text_on=True,lw=1.5,edgecolor='k'):
+    def SolarBasin(ax,text_label=switch_label(r'{\bf Solar basin}'),rotation=98,text_pos=[0.45e4,0.18e-11],col=[0.03, 0.42, 0.29],text_col='w',fs=13,zorder=0.01,text_on=True,lw=1.5,edgecolor='k'):
         dat = loadtxt("limit_data/AxionPhoton/SolarBasin.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,edgecolor=edgecolor,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,rotation=rotation,lw=lw,edgealpha=1)
         return
 
-    def LeoT(ax,text_label=r'{\bf Leo T}',text_pos=[2.3e2,0.25e-13],col='#036b3e',text_col='w',fs=16,zorder=0.00003,text_on=True,rotation=-46,edgealpha=1,lw=2):
+    def LeoT(ax,text_label=switch_label(r'{\bf Leo T}'),text_pos=[2.3e2,0.25e-13],col='#036b3e',text_col='w',fs=16,zorder=0.00003,text_on=True,rotation=-46,edgealpha=1,lw=2):
         # anomalous gas heating in Leo T dwarf
         dat = loadtxt("limit_data/AxionPhoton/LeoT.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,rotation=rotation,edgealpha=edgealpha,lw=lw)
@@ -1184,7 +1191,7 @@ class AxionPhoton():
         plt.plot([1.2e3,6e3],[1.3e-18,2e-18],'-',lw=2,color=col,path_effects=line_background(3,'k'))
         return
 
-    def COBEFIRAS(ax,text_label=r'{\bf COBE/FIRAS}',text_pos=[0.45e2,4e-13],col='#234f8c',text_col='w',fs=13,zorder=0.0001,text_on=True,rotation=-46,lw=1.5,edgealpha=1):
+    def COBEFIRAS(ax,text_label=switch_label(r'{\bf COBE/FIRAS}'),text_pos=[0.45e2,4e-13],col='#234f8c',text_col='w',fs=13,zorder=0.0001,text_on=True,rotation=-46,lw=1.5,edgealpha=1):
         # anomalous gas heating in Leo T dwarf
         dat = loadtxt("limit_data/AxionPhoton/COBE-FIRAS.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,rotation=rotation,edgealpha=edgealpha,lw=lw)
@@ -1200,17 +1207,17 @@ class AxionPhoton():
         dat = loadtxt("limit_data/AxionPhoton/x_ion.txt")
         FilledLimit(ax,dat,'',col=[0.27, 0.51, 0.71],text_col='k',fs=fs,zorder=0.001,text_on=False,edgealpha=edgealpha,lw=lw)
         if text_on:
-            plt.text(100.5744*0.93,4.0e-11,r'{\bf Ionisation}',fontsize=fs-9,color='w',rotation=-90,ha='left',va='top',clip_on=True)
-            plt.text(40*0.93,3.7720e-11,r'{\bf fraction}',fontsize=fs-9,color='w',rotation=-90,ha='left',va='top',clip_on=True)
+            plt.text(100.5744*0.93,4.0e-11,switch_label(r'{\bf Ionisation}'),fontsize=fs-9,color='w',rotation=-90,ha='left',va='top',clip_on=True)
+            plt.text(40*0.93,3.7720e-11,switch_label(r'{\bf fraction}'),fontsize=fs-9,color='w',rotation=-90,ha='left',va='top',clip_on=True)
 
         # BBN+N_eff arXiv:[2002.08370]
         dat = loadtxt("limit_data/AxionPhoton/BBN_Neff.txt")
-        FilledLimit(ax,dat,r'{\bf BBN}+$N_{\rm eff}$',text_pos=[2.5e5,2e-11],col=[0.27, 0.51, 0.71],text_col='w',fs=fs,zorder=0.001,text_on=text_on,rotation=-55,ha='left',va='top',edgealpha=edgealpha,lw=lw)
+        FilledLimit(ax,dat,switch_label(r'{\bf BBN}+$N_{\rm eff}$'),text_pos=[2.5e5,2e-11],col=[0.27, 0.51, 0.71],text_col='w',fs=fs,zorder=0.001,text_on=text_on,rotation=-55,ha='left',va='top',edgealpha=edgealpha,lw=lw)
 
         # Extragalactic background light
         EBL = loadtxt("limit_data/AxionPhoton/EBL.txt")
         #EBL2 = loadtxt("limit_data/AxionPhoton/EBL2.txt")
-        FilledLimit(ax,EBL,r'{\bf EBL}',text_pos=[5e4,5e-14],col=[0.0, 0.2, 0.6],text_col='w',fs=fs+5,zorder=0.001,text_on=text_on,rotation=-55,ha='left',va='top',edgealpha=edgealpha,lw=lw)
+        FilledLimit(ax,EBL,switch_label(r'{\bf EBL}'),text_pos=[5e4,5e-14],col=[0.0, 0.2, 0.6],text_col='w',fs=fs+5,zorder=0.001,text_on=text_on,rotation=-55,ha='left',va='top',edgealpha=edgealpha,lw=lw)
         #FilledLimit(ax,EBL2,'',col=[0.0, 0.2, 0.6],text_on=False,zorder=0.001,edgealpha=edgealpha,lw=lw)
 
         # Spectral distortions of CMB
@@ -1218,24 +1225,24 @@ class AxionPhoton():
 
         return
 
-    def GlobularClusters(ax,text_label=r'{\bf Globular clusters}',text_pos=[1.4e0,1.1e-10],col=[0.0, 0.66, 0.42],text_col='w',fs=23,zorder=0.05,text_on=True,lw=1.5,edgealpha=1):
+    def GlobularClusters(ax,text_label=switch_label(r'{\bf Globular clusters}'),text_pos=[1.4e0,1.1e-10],col=[0.0, 0.66, 0.42],text_col='w',fs=23,zorder=0.05,text_on=True,lw=1.5,edgealpha=1):
         # Globular clusters arXiv:[1406.6053]
         dat = loadtxt("limit_data/AxionPhoton/GlobularClusters.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,va='center',edgealpha=edgealpha)
         return
 
-    def GlobularClusters_R2(ax,text_label=r'{\bf Globular clusters ($R_2$)}',text_pos=[1e-3,5e-11],col=[0.0, 0.66, 0.42],text_col='w',fs=23,zorder=0.01,text_on=True,lw=1.5,edgealpha=1):
+    def GlobularClusters_R2(ax,text_label=switch_label(r'{\bf Globular clusters ($R_2$)}'),text_pos=[1e-3,5e-11],col=[0.0, 0.66, 0.42],text_col='w',fs=23,zorder=0.01,text_on=True,lw=1.5,edgealpha=1):
         # R2 parameter https://arxiv.org/pdf/2207.03102.pdf
         dat = loadtxt("limit_data/AxionPhoton/GlobularClusters-R2.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,va='center',edgealpha=edgealpha)
         return
 
-    def WhiteDwarfs(ax,text_label=r'\noindent {\bf White}\newline  {\bf dwarfs}',text_pos=[1.3e6,4e-8],col='#2ec763',text_col='w',fs=18,zorder=0.04,text_on=True,lw=1.5,rotation=87,edgealpha=1):
+    def WhiteDwarfs(ax,text_label=switch_label(r'\noindent {\bf White}\newline  {\bf dwarfs}'),text_pos=[1.3e6,4e-8],col='#2ec763',text_col='w',fs=18,zorder=0.04,text_on=True,lw=1.5,rotation=87,edgealpha=1):
         dat = loadtxt("limit_data/AxionPhoton/WhiteDwarfs.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,va='center',rotation=rotation,edgealpha=edgealpha)
         return
 
-    def SolarNu(ax,text_label=r'{\bf Solar} $\nu$',text_pos=[1e1,2e-9],col='seagreen',text_col='w',fs=33,zorder=1,text_on=True,lw=1.5,edgealpha=1):
+    def SolarNu(ax,text_label=switch_label(r'{\bf Solar} $\nu$'),text_pos=[1e1,2e-9],col='seagreen',text_col='w',fs=33,zorder=1,text_on=True,lw=1.5,edgealpha=1):
         # Solar neutrino B8 bound arXiv:[1501.01639]
         dat = loadtxt("limit_data/AxionPhoton/SolarNu.txt")
         FilledLimit(ax,dat,text_label,text_pos=text_pos,col=col,text_col=text_col,fs=fs,zorder=zorder,text_on=text_on,lw=lw,va='center',edgealpha=edgealpha)
@@ -1251,7 +1258,7 @@ class AxionPhoton():
             plt.text(text_pos[0],text_pos[1],text_label,fontsize=fs,color=text_col,rotation=rotation,ha='left',va='top',clip_on=True)
         return
 
-    def SN1987A_HeavyALP_gamma(ax,text_label=r'{\bf SN1987A} ($\gamma$)',text_pos=[0.8e5,2.0e-10],col='#067034',text_col='w',fs=18,zorder=0.03,text_on=True,lw=1.5,rotation=-25.5,edgealpha=1):
+    def SN1987A_HeavyALP_gamma(ax,text_label=switch_label(r'{\bf SN1987A} ($\gamma$)'),text_pos=[0.8e5,2.0e-10],col='#067034',text_col='w',fs=18,zorder=0.03,text_on=True,lw=1.5,rotation=-25.5,edgealpha=1):
         # https://arxiv.org/pdf/2109.03244.pdf
         dat = loadtxt("limit_data/AxionPhoton/SN1987A_HeavyALP_gamma.txt")
         plt.fill(dat[:,0],dat[:,1],edgecolor=None,facecolor=col,zorder=zorder)
@@ -1268,8 +1275,8 @@ class AxionPhoton():
         plt.plot(dat[:,0],dat[:,1],lw=lw,color='k',alpha=edgealpha,zorder=zorder)
 
         if text_on:
-            plt.text(text_shift[0]*1.8e6,text_shift[1]*5e-9,r'{\bf SN1987A}',fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
-            plt.text(text_shift[0]*1.8e6,text_shift[1]*2e-9,r'($\nu$)',fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
+            plt.text(text_shift[0]*1.8e6,text_shift[1]*5e-9,switch_label(r'{\bf SN1987A}'),fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
+            plt.text(text_shift[0]*1.8e6,text_shift[1]*2e-9,switch_label(r'($\nu$)'),fontsize=fs,color='w',rotation=0,ha='center',va='top',clip_on=True)
         return
 
     def NeutronStars(ax,col='#52a178',fs=14,RescaleByMass=False,text_on=True,text_shift=[1,1],lw=1,text_col='#52a178',xskip=8,edgealpha=1):
@@ -1302,9 +1309,9 @@ class AxionPhoton():
 
         if text_on:
             if rs1==0:
-                plt.text(text_shift[0]*1e-5,text_shift[1]*0.62e-10,r'{\bf Neutron stars}',fontsize=fs,color=text_col,ha='left',va='bottom')
+                plt.text(text_shift[0]*1e-5,text_shift[1]*0.62e-10,switch_label(r'{\bf Neutron stars}'),fontsize=fs,color=text_col,ha='left',va='bottom')
             else:
-                plt.text(text_shift[0]*1e-7,text_shift[1]*4e3,r'{\bf Neutron}',fontsize=fs,color=col,ha='center')
+                plt.text(text_shift[0]*1e-7,text_shift[1]*4e3, switch_label(r'{\bf Neutron}'),fontsize=fs,color=col,ha='center')
                 plt.text(text_shift[0]*1e-7,text_shift[1]*1e3,r'{\bf stars}',fontsize=fs,color=col,ha='center')
                 plt.plot([3.5e-7*text_shift[0],2e-5],[6e3*text_shift[1],8e3],lw=1.5,color=col,path_effects=line_background(2,'w'))
         return
@@ -1388,7 +1395,7 @@ class AxionPhoton():
         """
         if projection:
             #AxionPhoton.NGC1275(ax,text_on=False,edgealpha=edgealpha,lw=lw)
-            xionPhoton.SN1987A_gamma(ax,text_on=False,edgealpha=edgealpha,lw=lw)
+            AxionPhoton.SN1987A_gamma(ax,text_on=False,edgealpha=edgealpha,lw=lw)
             if GalacticSN:
                 AxionPhoton.Fermi_GalacticSN(ax,text_on=text_on,lw=lw)
             AxionPhoton.MWDXrays(ax,text_on=text_on,edgealpha=edgealpha,lw=lw)
@@ -2465,10 +2472,10 @@ class DarkPhoton():
 
 
         if text_on:
-            plt.text(1.4e-6,0.5e-14,r'{\bf ADMX}',fontsize=fs,color=ADMX_col,rotation=90,rotation_mode='anchor',ha='center',va='center')
-            plt.text(0.8e-5,0.1e-13,r'{\bf CAPP}',fontsize=fs-2,color=CAPP_col,rotation=90,rotation_mode='anchor',ha='center',va='center')
-            plt.text(0.19e-4,3e-15,r'{\bf HAYSTAC}',fontsize=fs-5,color=HAYSTAC_col,rotation=90,rotation_mode='anchor',ha='center',va='center')
-            plt.text(0.47e-4,3e-12,r'{\bf QUAX}',fontsize=fs-8,color=QUAX_col,rotation=-90,rotation_mode='anchor',ha='center',va='center')
+            plt.text(1.4e-6,0.5e-14,switch_label(r'{\bf ADMX}'),fontsize=fs,color=ADMX_col,rotation=90,rotation_mode='anchor',ha='center',va='center')
+            plt.text(0.8e-5,0.1e-13,switch_label(r'{\bf CAPP}'),fontsize=fs-2,color=CAPP_col,rotation=90,rotation_mode='anchor',ha='center',va='center')
+            plt.text(0.19e-4,3e-15,switch_label(r'{\bf HAYSTAC}'),fontsize=fs-5,color=HAYSTAC_col,rotation=90,rotation_mode='anchor',ha='center',va='center')
+            plt.text(0.47e-4,3e-12,switch_label(r'{\bf QUAX}'),fontsize=fs-8,color=QUAX_col,rotation=-90,rotation_mode='anchor',ha='center',va='center')
 
         return
 
